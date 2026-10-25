@@ -1,0 +1,517 @@
+```html
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Racing | Supercar Collection</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #080808;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6%;
+    border-bottom: 1px solid #292929;
+    background: #080808;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+.logo span {
+    color: #999;
+}
+
+nav {
+    display: flex;
+    gap: 28px;
+}
+
+nav a {
+    color: #ddd;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+nav a:hover {
+    color: #888;
+}
+
+.hero {
+    min-height: 430px;
+    padding: 85px 7%;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(90deg, #050505 0%, #050505e8 35%, #05050530 100%),
+        url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1800&q=85")
+        center 55% / cover;
+}
+
+.hero-content {
+    max-width: 550px;
+}
+
+.eyebrow {
+    color: #aaa;
+    letter-spacing: 4px;
+    font-size: 12px;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    font-size: clamp(45px, 7vw, 85px);
+    line-height: .92;
+    font-weight: 900;
+    margin-bottom: 22px;
+}
+
+.hero p {
+    color: #ccc;
+    line-height: 1.8;
+    max-width: 420px;
+}
+
+.button {
+    display: inline-block;
+    padding: 13px 22px;
+    margin-top: 25px;
+    border: 1px solid #aaa;
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+    transition: .25s;
+}
+
+.button:hover {
+    color: #000;
+    background: #fff;
+}
+
+.section-title {
+    padding: 55px 6% 25px;
+}
+
+.section-title p {
+    color: #999;
+    font-size: 11px;
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+}
+
+.section-title h2 {
+    font-size: clamp(28px, 4vw, 43px);
+    font-weight: 900;
+}
+
+.cars {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2px;
+    padding: 0 2px;
+}
+
+.car-card {
+    background: #101010;
+    border: 1px solid #292929;
+    overflow: hidden;
+}
+
+.car-heading {
+    padding: 24px 25px 15px;
+}
+
+.car-heading .number {
+    color: #888;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.car-heading h3 {
+    font-size: 24px;
+    margin-top: 9px;
+    letter-spacing: 1px;
+}
+
+.car-heading p {
+    color: #aaa;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.car-image {
+    width: 100%;
+    height: 290px;
+    display: block;
+    object-fit: cover;
+    background: #171717;
+    filter: grayscale(100%);
+    transition: filter .3s, transform .4s;
+}
+
+.car-card:hover .car-image {
+    filter: grayscale(35%);
+    transform: scale(1.02);
+}
+
+.car-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 22px 20px;
+    gap: 10px;
+}
+
+.stat {
+    border-right: 1px solid #333;
+    padding-left: 10px;
+}
+
+.stat:last-child {
+    border-right: none;
+}
+
+.stat strong {
+    display: block;
+    font-size: 19px;
+    margin-bottom: 7px;
+}
+
+.stat span {
+    font-size: 10px;
+    color: #999;
+    letter-spacing: 1px;
+}
+
+.details {
+    padding: 55px 6%;
+    background: #0d0d0d;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.detail-card {
+    border: 1px solid #303030;
+    padding: 25px;
+    background: #111;
+}
+
+.detail-card .icon {
+    font-size: 30px;
+    margin-bottom: 18px;
+}
+
+.detail-card h3 {
+    font-size: 17px;
+    margin-bottom: 12px;
+}
+
+.detail-card p {
+    color: #aaa;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+footer {
+    border-top: 1px solid #292929;
+    padding: 30px 6%;
+    color: #888;
+    font-size: 11px;
+    letter-spacing: 2px;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 700px) {
+    header {
+        padding: 0 5%;
+    }
+
+    nav {
+        gap: 10px;
+    }
+
+    nav a {
+        font-size: 9px;
+    }
+
+    .hero {
+        min-height: 380px;
+        padding: 60px 6%;
+    }
+
+    .cars {
+        grid-template-columns: 1fr;
+    }
+
+    .car-image {
+        height: 250px;
+    }
+
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    footer {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">R<span>/</span> RACING</div>
+
+    <nav>
+        <a href="#anasayfa">ANA SAYFA</a>
+        <a href="#arabalar">ARAÇLAR</a>
+        <a href="#teknik">TEKNİK DETAYLAR</a>
+    </nav>
+</header>
+
+<section class="hero" id="anasayfa">
+    <div class="hero-content">
+        <p class="eyebrow">SUPERCAR COLLECTION</p>
+        <h1>HIZIN<br>SANATI.</h1>
+        <p>
+            Performans, tasarım ve mühendisliğin mükemmel birleşimi.
+            Dünyanın en dikkat çekici süper spor otomobillerini keşfet.
+        </p>
+        <a href="#arabalar" class="button">ARAÇLARI KEŞFET →</a>
+    </div>
+</section>
+
+<section id="arabalar">
+    <div class="section-title">
+        <p>01 / SUPERCAR COLLECTION</p>
+        <h2>ÖZEL OTOMOBİLLER</h2>
+    </div>
+
+    <div class="cars">
+
+        <!-- LAMBORGHINI: DOĞRU FOTOĞRAF -->
+        <article class="car-card">
+            <div class="car-heading">
+                <span class="number">01 / 04</span>
+                <h3>LAMBORGHINI</h3>
+                <p>Aventador SVJ</p>
+            </div>
+
+            <img
+                class="car-image"
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/Lamborghini_Aventador_SVJ_%2853059861223%29.jpg"
+                alt="Lamborghini Aventador SVJ"
+                loading="lazy">
+
+            <div class="car-info">
+                <div class="stat">
+                    <strong>770 HP</strong>
+                    <span>V12 MOTOR</span>
+                </div>
+                <div class="stat">
+                    <strong>350 KM/S</strong>
+                    <span>AZAMİ HIZ</span>
+                </div>
+                <div class="stat">
+                    <strong>2.8 SN</strong>
+                    <span>0-100 KM/S</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- BUGATTI: DOĞRU FOTOĞRAF -->
+        <article class="car-card">
+            <div class="car-heading">
+                <span class="number">02 / 04</span>
+                <h3>BUGATTI</h3>
+                <p>Chiron</p>
+            </div>
+
+            <img
+                class="car-image"
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/A_Bugatti_Chiron.jpg"
+                alt="Bugatti Chiron"
+                loading="lazy">
+
+            <div class="car-info">
+                <div class="stat">
+                    <strong>1500 HP</strong>
+                    <span>W16 MOTOR</span>
+                </div>
+                <div class="stat">
+                    <strong>420+ KM/S</strong>
+                    <span>MODEL VERSİYONUNA GÖRE</span>
+                </div>
+                <div class="stat">
+                    <strong>2.4 SN</strong>
+                    <span>YAKLAŞIK 0-100</span>
+                </div>
+            </div>
+        </article>
+      
+<!-- FERRARI SF90 STRADALE -->
+<article class="car-card">
+    <div class="car-heading">
+        <span class="number">03 / 04</span>
+        <h3>FERRARI</h3>
+        <p>SF90 Stradale</p>
+    </div>
+
+    <img
+        class="car-image"
+        src="https://images.unsplash.com/photo-1592198084033-aader207b7a0?auto=format&fit=crop&w=1200&q=85"
+        alt="Ferrari spor otomobil"
+        loading="lazy"
+        onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=1200&q=85';">
+
+    <div class="car-info">
+        <div class="stat">
+            <strong>1000 HP</strong>
+            <span>HİBRİT MOTOR</span>
+        </div>
+        <div class="stat">
+            <strong>340 KM/S</strong>
+            <span>AZAMİ HIZ</span>
+        </div>
+        <div class="stat">
+            <strong>2.5 SN</strong>
+            <span>0-100 KM/S</span>
+        </div>
+    </div>
+</article>
+
+        <!-- McLAREN: DOĞRU FOTOĞRAF -->
+        <article class="car-card">
+            <div class="car-heading">
+                <span class="number">04 / 04</span>
+                <h3>McLAREN</h3>
+                <p>765LT</p>
+            </div>
+
+            <img
+                class="car-image"
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/McLaren_765LT_8.jpg"
+                alt="McLaren 765LT"
+                loading="lazy">
+
+            <div class="car-info">
+                <div class="stat">
+                    <strong>765 PS</strong>
+                    <span>V8 MOTOR</span>
+                </div>
+                <div class="stat">
+                    <strong>330 KM/S</strong>
+                    <span>AZAMİ HIZ</span>
+                </div>
+                <div class="stat">
+                    <strong>2.8 SN</strong>
+                    <span>0-100 KM/S</span>
+                </div>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<section class="details" id="teknik">
+    <div class="section-title" style="padding: 0;">
+        <p>02 / ENGINEERING</p>
+        <h2>HER PARÇANIN BİR GÖREVİ VAR.</h2>
+    </div>
+
+    <div class="details-grid">
+        <article class="detail-card">
+            <div class="icon">⚙</div>
+            <h3>MOTOR</h3>
+            <p>
+                Aracın güç kaynağıdır. Motorun hacmi, silindir yapısı
+                ve turbo sistemi performansı etkiler.
+            </p>
+        </article>
+
+        <article class="detail-card">
+            <div class="icon">◈</div>
+            <h3>GÖVDE VE AERODİNAMİK</h3>
+            <p>
+                Hava akışını düzenler. Kanatlar ve gövde tasarımı,
+                yüksek hızda dengeye yardımcı olur.
+            </p>
+        </article>
+
+        <article class="detail-card">
+            <div class="icon">⛭</div>
+            <h3>ŞANZIMAN</h3>
+            <p>
+                Motor gücünü tekerleklere aktarır ve hızlanma
+                sırasında uygun vites oranını sağlar.
+            </p>
+        </article>
+
+        <article class="detail-card">
+            <div class="icon">◉</div>
+            <h3>FREN SİSTEMİ</h3>
+            <p>
+                Aracın hızını düşürür. Diskler, balatalar ve
+                elektronik sistemler birlikte çalışır.
+            </p>
+        </article>
+
+        <article class="detail-card">
+            <div class="icon">⌁</div>
+            <h3>SÜSPANSİYON</h3>
+            <p>
+                Yol darbelerini azaltmaya ve tekerleklerin
+                yol yüzeyiyle temasını korumaya yardımcı olur.
+            </p>
+        </article>
+
+        <article class="detail-card">
+            <div class="icon">◌</div>
+            <h3>LASTİK VE JANT</h3>
+            <p>
+                Yol tutuşu, frenleme ve direksiyon tepkileri
+                üzerinde önemli rol oynar.
+            </p>
+        </article>
+    </div>
+</section>
+
+<footer>
+    <span>R/ RACING</span>
+    <span>SUPERCAR COLLECTION</span>
+    <span>HIZIN SANATI.</span>
+</footer>
+
+</body>
+</html>
+```
